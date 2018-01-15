@@ -6,22 +6,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 public class PageFragment extends android.support.v4.app.Fragment{
 
+    private View view;
+    private TextView text;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.page_fragment_layout, container, false);
+        view = inflater.inflate(R.layout.page_fragment_layout, container, false);
 
-        TextView txtEdit = (TextView) view.findViewById(R.id.txtEdit);
+        text = view.findViewById(R.id.txtEdit);
 
-        Bundle bundle = getArguments();
 
-        int pos = bundle.getInt("count");
-
-        txtEdit.setText("numero: "+pos);
+        Ion.with(getContext())
+                .load("https://api.giphy.com/v1/gifs/random?api_key=UTvzNeIbjkDQnzhmx3PwFrMZVT6INkfI&tag=&rating=G")
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>(){
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        text.setText(result.toString());
+                    }
+                });
 
         return view;
     }
+
 }
