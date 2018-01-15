@@ -6,11 +6,9 @@
     android:padding="16dp"
     >
 
-    <TextView
+    <ImageView
+        android:id="@+id/imgGIF"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/txtEdit"
-        android:layout_gravity="center"
-        ></TextView>
+        android:layout_height="match_parent" />
 
 </FrameLayout>
