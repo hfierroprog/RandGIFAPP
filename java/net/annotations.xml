@@ -1,0 +1,5 @@
+<root>
+    <item name='java.net.URL java.io.InputStream openStream()'>
+        <annotation name='android.support.annotation.NonNull' />
+    </item>
+</root>
